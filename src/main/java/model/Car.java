@@ -1,4 +1,4 @@
-package main.java.model;
+package model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,6 +36,7 @@ public class Car {
 
     private String color;
 
+    @JoinColumn(name = "production_date")
     private Time productionDate;
 
     @Override

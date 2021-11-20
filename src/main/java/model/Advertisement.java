@@ -1,4 +1,4 @@
-package main.java.model;
+package model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -30,15 +30,24 @@ public class Advertisement {
 
     private Boolean status;
 
-    @ManyToOne
+    private Date created;
+
+    private String photo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "car_id")
     private Car car;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     private Author author;
 
-    private Timestamp created;
+    public Advertisement(Long id, String description, Boolean status, Date created) {
+        this.id = id;
+        this.description = description;
+        this.status = status;
+        this.created = created;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -59,13 +68,14 @@ public class Advertisement {
 
     @Override
     public String toString() {
-        return "Advertisement{"
+        return "\nAdvertisement{"
                 + "id=" + id
                 + ", description='" + description + '\''
                 + ", status=" + status
                 + ", carId=" + car
                 + ", authorId=" + author
                 + ", created=" + created
+                + ", phote=" + photo
                 + '}';
     }
 }
