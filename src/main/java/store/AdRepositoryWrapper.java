@@ -57,7 +57,6 @@ public class AdRepositoryWrapper {
                         + "created >= :fDate").setParameter("fDate", oneDayAgo).list());
     }
 
-
     public List<Advertisement> showWithPhoto() {
         return sessionMethodsWithReturn(session -> session.createQuery(
                 "FROM Advertisement WHERE photo != ''").list());
